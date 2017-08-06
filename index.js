@@ -1,7 +1,12 @@
 var express = require('express');
+//var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 
+//using express 
 var app = express();
+
+
+
 
 var contexts = [];
 
@@ -16,7 +21,7 @@ app.get('/smssent', function (req, res) {
   contexts.forEach(function(value) {
     console.log(value.from);
     if (value.from == number) {
-      context = value.context;ß
+      context = value.context;
       contextIndex = index;
     }
     index = index + 1;
@@ -25,17 +30,19 @@ app.get('/smssent', function (req, res) {
   console.log('Recieved message' + number + ' says \'' + message  + '\'');
 
   var conversation = new ConversationV1({
-    username: '7ec7d501-0e6f-43d1-86b3-576f38822a05',
-    password: '1yUTwKgDTCUL',
-    version_date: ConversationV1.VERSION_DATE_2017_08_01
+    
+  username: '05d0272f-8e14-4c5d-a807-1e8cbff7a26f',
+  password: 'YK6NVrQg5nze',
+    version_date: ConversationV1.VERSION_DATE_2017_05_26
   });
+   
 
   console.log(JSON.stringify(context));
   console.log(contexts.length);
 
   conversation.message({
     input: { text: message },
-    workspace_id: '2732a7bc-66b4-461e-b832-20d4a17b0d34',
+    workspace_id: '117cf458-3737-428b-92cc-ca03596ee3e7',
     context: context
    }, function(err, response) {
        if (err) {
@@ -54,11 +61,10 @@ app.get('/smssent', function (req, res) {
          var intent = response.intents[0].intent;
          console.log(intent);
          if (intent == "done") {
-           
+           //contexts.splice(contexts.indexOf({'from': number, 'context': response.context}),1);
            contexts.splice(contextIndex,1);
-          
+           // Call REST API here (order pizza, etc.)
          }
-
         /* var intent = response.intents[0].intent;
          console.log(intent);
          if (intent == "done") {
