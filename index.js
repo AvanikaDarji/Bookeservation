@@ -42,7 +42,7 @@ app.get('/smssent', function (req, res) {
 
   conversation.message({
     input: { text: message },
-    workspace_id: '117cf458-3737-428b-92cc-ca03596ee3e7',
+    workspace_id: 'e556964f-e07b-4eeb-bf71-6256c9c44ba8',
     context: context
    }, function(err, response) {
        if (err) {
@@ -61,9 +61,9 @@ app.get('/smssent', function (req, res) {
          var intent = response.intents[0].intent;
          console.log(intent);
          if (intent == "done") {
-           //contexts.splice(contexts.indexOf({'from': number, 'context': response.context}),1);
+          
            contexts.splice(contextIndex,1);
-           // Call REST API here (order pizza, etc.)
+          
          }
         /* var intent = response.intents[0].intent;
          console.log(intent);
