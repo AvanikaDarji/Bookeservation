@@ -5,9 +5,6 @@ var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 //using express 
 var app = express();
 
-
-
-
 var contexts = [];
 
 app.get('/smssent', function (req, res) {
@@ -37,8 +34,8 @@ app.get('/smssent', function (req, res) {
   });
    
 
-  console.log(JSON.stringify(context));
-  console.log(contexts.length);
+  //console.log(JSON.stringify(context));
+  //console.log(contexts.length);
 
   conversation.message({
     input: { text: message },
